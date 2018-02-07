@@ -19,5 +19,9 @@ from article import views
 
 urlpatterns = [
 	path('admin/', admin.site.urls),
-	path('', views.home),
+	path('', views.home, name='home'),
+	path('aboutme', views.aboutme, name='aboutme'),
+	re_path('^archives/$', views.archives, name='archives'),
+	re_path('^(?P<id>\d+)/$', views.detail, name='detail'),
+	re_path('^(?P<tag>\w+)/$', views.atag, name='atag'),
 ]
