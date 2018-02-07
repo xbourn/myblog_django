@@ -16,12 +16,16 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, re_path
 from article import views
+from article.views import RSSFeed
+
 
 urlpatterns = [
 	path('admin/', admin.site.urls),
 	path('', views.home, name='home'),
 	path('aboutme', views.aboutme, name='aboutme'),
+	re_path('^search/$', views.blog_search, name='search'),
 	re_path('^archives/$', views.archives, name='archives'),
 	re_path('^(?P<id>\d+)/$', views.detail, name='detail'),
 	re_path('^(?P<tag>\w+)/$', views.atag, name='atag'),
+	re_path('^feed/$', RSSFeed(), name="RSS"),
 ]
